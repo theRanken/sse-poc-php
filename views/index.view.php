@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>SSE Client Example</title>
+    <title>SSE POC</title>
     <style>
         body {
             font-family: Arial, sans-serif;
