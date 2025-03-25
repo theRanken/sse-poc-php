@@ -1,0 +1,15 @@
+{
+    "require": {
+        "leafs/leaf": "*"
+    },
+    "require-dev": {
+        "leafs/bareui": "^1.2"
+    }
+    ,
+    "autoload": {
+        "files": [
+            "lib/dummy-data.php",
+            "lib/functions.php"
+        ]
+    }
+}
