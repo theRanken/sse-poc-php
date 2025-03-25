@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>SSE POC</title>
     <style>
@@ -18,8 +17,8 @@
 
         h1 {
             text-align: center;
-            font-weight: 900;
-            color: rgb(57, 93, 255);
+            font-weight: 800;
+            color: rgb(18, 18, 20);
         }
 
         p {
@@ -31,7 +30,7 @@
         #events {
             margin-top: 20px;
             padding: 10px;
-            border: 1px solid rgb(57, 93, 255);
+            border: 1px solid rgba(18, 18, 20, 0.75);
             border-radius: 5px;
             background-color: #f9f9f9;
             max-height: 50vh;
@@ -55,7 +54,7 @@
         }
 
         #connectButton {
-            background-color: rgb(57, 93, 255);
+            background-color: rgba(18, 18, 20, 0.9);
             color: white;
             border: none;
         }
