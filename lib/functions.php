@@ -1,20 +1,16 @@
 <?php
 
-require_once __DIR__ . '/dummy-data.php';
-
 // Function to send an SSE message
 function sendMessage($message, $event = null) {
-    if ($event !== null) {
-        echo "event: $event\n";
-    }
-    echo "data: " . json_encode($message) . "\n\n";
+    echo "data: " . json_encode($message, JSON_PRETTY_PRINT) . "\n\n";
     ob_flush();
     flush();
 }
 
 // Simulate a data stream with configurable parameters
 function generateData($numEvents = 100, $timeout = null, $interval = 2) {
-    global $dadJokes, $events;
+    $dadJokes = require_once __DIR__ . '/jokes.php';
+    $events = require_once __DIR__ . '/events.php';
     $counter = 0;
     $startTime = time();
 

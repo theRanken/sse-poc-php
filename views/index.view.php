@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>SSE Client Example</title>
     <style>
@@ -8,16 +9,25 @@
             margin: 0;
             padding: 0;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
+
         h1 {
             text-align: center;
             font-weight: 900;
             color: rgb(57, 93, 255);
         }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+        }
+
         #events {
             margin-top: 20px;
             padding: 10px;
@@ -28,11 +38,13 @@
             min-height: 50vh;
             overflow-y: auto;
         }
+
         .button-wrappers {
             display: flex;
             justify-content: center;
             margin-top: 5%;
         }
+
         button {
             flex: auto;
             padding: 20px 40px;
@@ -43,7 +55,7 @@
         }
 
         #connectButton {
-            background-color:rgb(57, 93, 255);
+            background-color: rgb(57, 93, 255);
             color: white;
             border: none;
         }
@@ -54,13 +66,20 @@
             border: none;
         }
 
+        #connectButton:disabled,
+        #disconnectButton:disabled {
+            background-color: #ccc;
+        }
+
         .input-group {
             margin-bottom: 15px;
         }
+
         .input-group label {
             display: block;
             margin-bottom: 5px;
         }
+
         .input-group input {
             width: 100%;
             padding: 8px;
@@ -68,27 +87,64 @@
             border-radius: 4px;
         }
 
+        .event-item {
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .event-header {
+            padding: 10px;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .event-content {
+            padding: 10px;
+            display: none;
+        }
+
+        .event-content.active {
+            display: block;
+        }
+
+        .toggle-btn {
+            transition: transform 0.3s;
+        }
+
+        .toggle-btn.active {
+            transform: rotate(180deg);
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
         @media screen and (min-width: 430px) {
             .container {
                 max-width: 100%;
                 padding: 2.5%;
             }
-            
+
             .button-wrappers {
                 gap: 10px;
             }
-            
+
             button {
                 margin: 10px 0;
                 width: 100%;
             }
-            
+
             #events {
                 min-height: 70vh;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>S.S.E Demo</h1>
@@ -100,14 +156,29 @@
             </div>
             <div class="input-group">
                 <label for="interval">Interval (ms):</label>
-                <input type="number" id="interval" name="interval" value="1000" min="100">
+                <input type="number" id="interval" name="interval" value="500" min="100">
             </div>
             <div class="input-group">
                 <label for="timeout">Timeout (ms):</label>
-                <input type="number" id="timeout" name="timeout" value="30000" min="1000">
+                <input type="number" id="timeout" name="timeout" value="2000" min="1000">
             </div>
         </div>
-        <div id="events"></div>
+
+        <div id="events">
+            <div id="accordion-container">
+                <template id="event-template">
+                    <div class="event-item">
+                        <div class="event-header">
+                            Event #<span class="event-number"></span>
+                            <span class="toggle-btn">▼</span>
+                        </div>
+                        <div class="event-content">
+                            <pre class="event-data"></pre>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
         <div class="button-wrappers">
             <button id="disconnectButton" disabled>Disconnect</button>
             <button id="connectButton">Connect to Server</button>
@@ -133,25 +204,28 @@
         }
 
         connectButton.addEventListener('click', () => {
-            if (!eventSource) {;
-                eventSource = new EventSource(getQueryParams);
+            if (!eventSource) {
+                ;
+                eventSource = new EventSource(getQueryParams());
 
-                // Listen for 'update' events
-                eventSource.addEventListener('update', (event) => {
+                eventSource.onmessage = function (event) {
                     const data = JSON.parse(event.data);
-                    const updateElement = document.createElement('p');
-                    updateElement.textContent = `Update: ${JSON.stringify(data)}`;
-                    eventsDiv.appendChild(updateElement);
-                });
+                    const template = document.getElementById('event-template');
+                    const container = document.getElementById('accordion-container');
+                    const clone = template.content.cloneNode(true);
 
-                // Listen for 'milestone' events
-                eventSource.addEventListener('milestone', (event) => {
-                    const data = JSON.parse(event.data);
-                    const milestoneElement = document.createElement('p');
-                    milestoneElement.style.color = 'red';
-                    milestoneElement.textContent = `MILESTONE: ${JSON.stringify(data)}`;
-                    eventsDiv.appendChild(milestoneElement);
-                });
+                    clone.querySelector('.event-number').textContent = data.id;
+                    clone.querySelector('.event-data').textContent = JSON.stringify(data, null, 2);
+
+                    clone.querySelector('.event-header').addEventListener('click', function() {
+                        const content = this.nextElementSibling;
+                        const toggleBtn = this.querySelector('.toggle-btn');
+                        content.classList.toggle('active');
+                        toggleBtn.classList.toggle('active');
+                    });
+
+                    container.insertBefore(clone, container.firstChild);
+                };
 
                 // Handle connection errors
                 eventSource.onerror = (error) => {
@@ -177,4 +251,5 @@
         });
     </script>
 </body>
+
 </html>

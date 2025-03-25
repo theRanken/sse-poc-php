@@ -1,6 +1,5 @@
 <?php
-
-$dadJokes = [
+return  [
     "Why don't eggs tell jokes? They'd crack up!",
     "What do you call a fake noodle? An impasta!",
     "Why did the scarecrow win an award? Because he was outstanding in his field!",
@@ -51,16 +50,4 @@ $dadJokes = [
     "What do you call a fake spaghetti? An impasta!",
     "Why did the football coach go to the bank? To get his quarter back!",
     "What do you call a dinosaur that crashes his car? Tyrannosaurus wrecks!"
-];
-
-
-$events = [
-    'update' => [
-        'message' => 'New data available',
-        'timestamp' => time()
-    ],
-    'milestone' => [
-        'message' => 'Milestone reached', 
-        'timestamp' => time()
-    ]
 ];
