@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d00d7023f25ae4c410c699f1b8b5ab7",
+    "content-hash": "e8c50a565598627346e84ba6274e0ce7",
     "packages": [
         {
             "name": "leafs/anchor",
@@ -526,6 +526,37 @@
                 }
             ],
             "time": "2024-12-29T13:51:37+00:00"
+        },
+        {
+            "name": "theranken/streamer",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "C:/Users/ranke/Projects/php-packages/streamer",
+                "reference": "ae9dd0271693eb7b64e5e3b26b19aacc71480891"
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ranken\\Streamer\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rankencorp",
+                    "email": "rankencorp@gmail.com"
+                }
+            ],
+            "description": "A component package that provides server sent event streaming response capabilities",
+            "transport-options": {
+                "relative": false
+            }
         }
     ],
     "packages-dev": [
@@ -596,9 +627,11 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": {},
-    "prefer-stable": false,
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "theranken/streamer": 20
+    },
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {},
     "platform-dev": {},
