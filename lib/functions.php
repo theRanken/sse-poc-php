@@ -1,22 +1,20 @@
 <?php
 
-// Function to send an SSE message
-function sendMessage($message, $event = null) {
-    echo "data: " . json_encode($message, JSON_PRETTY_PRINT) . "\n\n";
-    ob_flush();
-    flush();
-}
-
 // Simulate a data stream with configurable parameters
-function generateData($numEvents = 100, $timeout = null, $interval = 2) {
+function generateData($numEvents = 10, $timeout = 120, $interval = 3) {
     $dadJokes = require_once __DIR__ . '/jokes.php';
     $events = require_once __DIR__ . '/events.php';
     $counter = 0;
     $startTime = time();
 
-    while ($counter < $numEvents) {
-        // Check timeout if set
-        if ($timeout !== null && (time() - $startTime) >= $timeout) {
+    while (true) {
+        // Check for timeout
+        if ($timeout && (time() - $startTime) >= $timeout) {
+            break;
+        }
+
+        // Check for max events
+        if ($numEvents !== null && $counter >= $numEvents) {
             break;
         }
 
@@ -31,12 +29,13 @@ function generateData($numEvents = 100, $timeout = null, $interval = 2) {
             'event' => $events[$randomEventType]
         ];
         
-        // Send event
-        sendMessage($data, $events[$randomEventType]);
-
-        // Sleep for specified interval
+       
+        // Wait between events
         sleep($interval);
-        
-        $counter++;
+
+        // Check if connection is still open
+        if (connection_aborted()) {
+            break;
+        }
     }
 }

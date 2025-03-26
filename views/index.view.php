@@ -154,12 +154,12 @@
                 <input type="number" id="numEvents" name="numEvents" value="10" min="1">
             </div>
             <div class="input-group">
-                <label for="interval">Interval (ms):</label>
-                <input type="number" id="interval" name="interval" value="500" min="100">
+                <label for="interval">Interval:</label>
+                <input type="number" id="interval" name="interval" value="5" min="1">
             </div>
             <div class="input-group">
                 <label for="timeout">Timeout (ms):</label>
-                <input type="number" id="timeout" name="timeout" value="2000" min="1000">
+                <input type="number" id="timeout" name="timeout" value="120000" min="60000">
             </div>
         </div>
 
@@ -195,7 +195,7 @@
 
         const getQueryParams = () => {
             const url = new URL(window.location.href);
-            url.pathname = '/events';
+            url.pathname = '/api/events';
             url.searchParams.set('numEvents', numEventsInput.value);
             url.searchParams.set('interval', intervalInput.value);
             url.searchParams.set('timeout', timeoutInput.value);
