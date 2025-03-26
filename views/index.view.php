@@ -159,7 +159,7 @@
             </div>
             <div class="input-group">
                 <label for="timeout">Timeout (ms):</label>
-                <input type="number" id="timeout" name="timeout" value="120000" min="60000">
+                <input type="number" id="timeout" name="timeout" value="10000" min="10000">
             </div>
         </div>
 

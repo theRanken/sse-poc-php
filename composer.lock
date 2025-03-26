@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8c50a565598627346e84ba6274e0ce7",
+    "content-hash": "878679d37194d168a6d6bc42b6fdabec",
     "packages": [
         {
             "name": "leafs/anchor",
@@ -343,16 +343,16 @@
         },
         {
             "name": "leafs/leaf",
-            "version": "v4.0",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leafsphp/leaf.git",
-                "reference": "350d33e7c95a62dd7bd9f07ab77afaa33cff01a1"
+                "reference": "53a72972a68224831edd1d3d51f51de7b2de7dc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leafsphp/leaf/zipball/350d33e7c95a62dd7bd9f07ab77afaa33cff01a1",
-                "reference": "350d33e7c95a62dd7bd9f07ab77afaa33cff01a1",
+                "url": "https://api.github.com/repos/leafsphp/leaf/zipball/53a72972a68224831edd1d3d51f51de7b2de7dc2",
+                "reference": "53a72972a68224831edd1d3d51f51de7b2de7dc2",
                 "shasum": ""
             },
             "require": {
@@ -399,7 +399,7 @@
             ],
             "support": {
                 "issues": "https://github.com/leafsphp/leaf/issues",
-                "source": "https://github.com/leafsphp/leaf/tree/v4.0"
+                "source": "https://github.com/leafsphp/leaf/tree/v4.1.1"
             },
             "funding": [
                 {
@@ -411,7 +411,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-03-07T13:10:12+00:00"
+            "time": "2025-03-26T10:50:09+00:00"
         },
         {
             "name": "psr/log",
@@ -533,7 +533,7 @@
             "dist": {
                 "type": "path",
                 "url": "C:/Users/ranke/Projects/php-packages/streamer",
-                "reference": "ae9dd0271693eb7b64e5e3b26b19aacc71480891"
+                "reference": "78d08909913887a8619238eecbb277ece97817a0"
             },
             "require": {
                 "php": ">=7.4"

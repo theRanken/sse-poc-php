@@ -5,4 +5,4 @@ use App\Controllers\HomepageController;
 
 
 // Homepage Route
-Router::get('/', HomepageController::class);
+Router::get('/', fn() => response()->render('index'));

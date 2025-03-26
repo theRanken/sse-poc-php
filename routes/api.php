@@ -4,5 +4,5 @@ use Leaf\Router;
 
 
 Router::group("api", function () {
-    Router::get("/events", "EventsController@getEvents");
+    Router::get("/events", "App\Controllers\EventsController@getEvents");
 });
